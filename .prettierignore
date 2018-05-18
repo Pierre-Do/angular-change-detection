@@ -1,0 +1,6 @@
+node_modules
+.idea
+.git
+target
+package.json
+src/assets/i18n
