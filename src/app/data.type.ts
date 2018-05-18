@@ -1,5 +1,5 @@
 export interface DataType {
-  items: DataLine[];
+  items: {[key: number]: DataLine};
 }
 
 export interface DataLine {

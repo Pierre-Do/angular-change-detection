@@ -1,7 +1,6 @@
-<button (click)="shuffleArrayWithMutation()">Shuffle With Mutation</button>
-<button (click)="shuffleArrayWithoutMutation()">Shuffle Without Mutation</button>
+<button (click)="shuffleArray()">Shuffle With Mutation</button>
 <ul>
-    <li *ngFor="let item of data.items">
-        <app-data-line [line]="item"></app-data-line>
+    <li *ngFor="let key of keys">
+        <app-data-line [line]="data.items[key]"></app-data-line>
     </li>
 </ul>
