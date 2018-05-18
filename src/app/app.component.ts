@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   data = [
     { label: 'Label 0' },
     { label: 'Label 1' },
@@ -20,8 +20,6 @@ export class AppComponent implements OnInit {
     { label: 'Label 10' },
   ];
 
-  ngOnInit(): void {}
-
   switchPositionsWithMutation(fromIndex: number, toIndex: number) {
     const item = this.data[fromIndex];
     this.data[fromIndex] = this.data[toIndex];
@@ -33,23 +31,23 @@ export class AppComponent implements OnInit {
   }
 
   shuffleArrayWithMutation() {
-    const beforeRef = this.data;
     for (let i = 0; i < this.data.length; ++i) {
       this.switchPositionsWithMutation(this.getRandomIndex(), this.getRandomIndex());
     }
-    console.log('Has the same ref?', beforeRef === this.data);
   }
 
   shuffleArrayWithoutMutation() {
-    const beforeRef = this.data;
-    for (let i = 0; i < this.data.length; ++i) {
+    let dataCopy = JSON.parse(JSON.stringify(this.data));
+
+    for (let i = 0; i < dataCopy.length; ++i) {
       const index = this.getRandomIndex();
-      this.data = [
-        Object.assign({}, this.data[index]),
-        ...this.data.slice(0, index),
-        ...this.data.slice(index + 1, this.data.length),
+      dataCopy = [
+        dataCopy[index],
+        ...dataCopy.slice(0, index),
+        ...dataCopy.slice(index + 1, dataCopy.length),
       ];
     }
-    console.log('Has the same ref?', beforeRef === this.data);
+
+    this.data = dataCopy;
   }
 }
