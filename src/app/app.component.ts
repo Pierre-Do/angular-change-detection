@@ -50,4 +50,8 @@ export class AppComponent {
 
     this.data = dataCopy;
   }
+
+  trackByFn(index: number, line) {
+    return line.label;
+  }
 }
